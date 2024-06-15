@@ -5,7 +5,7 @@ export async function Api(query) {
   if (query.length) {
     const res = await axios({
       method: "GET",
-      url: `http://www.omdbapi.com/?apikey=${key}&s=${query}`,
+      url: `https://www.omdbapi.com/?apikey=${key}&s=${query}`,
     });
     // if (res.data.Response === "False") throw new Error(res.data.Error);
     // if (res.data)
@@ -15,7 +15,7 @@ export async function Api(query) {
 export async function Api2(select) {
   const res = await axios({
     method: "GET",
-    url: `http://www.omdbapi.com/?apikey=${key}&i=${select}`,
+    url: `https://www.omdbapi.com/?apikey=${key}&i=${select}`,
   });
   // if (res.data.Response === "False") throw new Error(res.data.Error);
   // if (res.data)
