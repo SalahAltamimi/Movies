@@ -61,7 +61,7 @@ export const MovieApi2 = createAsyncThunk(
 const Movie = createSlice({
   name: "Movie",
   initialState: {
-    movies: [],
+    movies: tempMovieData,
     movie: {},
     isLoading: false,
     error: "",
@@ -95,10 +95,6 @@ const Movie = createSlice({
         state.error = action.payload;
         state.isLoading = false;
         state.movies = [];
-      })
-      .addCase(MovieApi2.pending, (state) => {
-        state.isLoading = true;
-        state.error = "";
       })
       .addCase(MovieApi2.fulfilled, (state, action) => {
         state.movie = action.payload;

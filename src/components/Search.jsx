@@ -7,7 +7,7 @@ export function Search() {
   const dispatch = useDispatch();
   useEffect(
     function () {
-      dispatch(MovieApi(query));
+      if (query.length > 0) dispatch(MovieApi(query));
     },
     [query, dispatch]
   );
