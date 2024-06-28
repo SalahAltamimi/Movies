@@ -77,7 +77,7 @@ const Movie = createSlice({
       state.select = null;
     },
     addWatched(state, action) {
-      state.watched = [...state.watched, action.payload];
+      state.watched.push(action.payload);
     },
   },
   extraReducers: (builder) =>

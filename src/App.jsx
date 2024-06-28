@@ -4,19 +4,19 @@ import Loading from "./ui/Loading";
 import Error from "./ui/Error";
 const AppLayout = lazy(() => import("./pages/AppLayout"));
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: (
+      <Suspense fallback={<Loading />}>
+        <AppLayout />
+      </Suspense>
+    ),
+    errorElement: <Error />,
+  },
+  { path: "*", element: <Error /> },
+]);
 function App() {
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: (
-        <Suspense fallback={<Loading />}>
-          <AppLayout />
-        </Suspense>
-      ),
-      errorElement: <Error />,
-    },
-    { path: "*", element: <Error /> },
-  ]);
   return <RouterProvider router={router} />;
 }
 
