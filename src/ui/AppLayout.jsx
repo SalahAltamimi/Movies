@@ -7,13 +7,16 @@ import { Search } from "../components/Search";
 import { NavBar } from "../components/NavBar";
 import { WatchedSummary } from "../components/WatchedSummary";
 import { useSelector } from "react-redux";
-import Loading from "../ui/Loading";
-import Error from "../ui/Error";
+import Loading from "./Loading";
+import Error from "./Error";
 import MovieDetails from "../components/MovieDetails";
 
 export default function AppLayout() {
-  const { error, isLoading, select, watched } = useSelector(
-    (store) => store.Movies
+  const { error, isLoading, watched } = useSelector(
+    (store) => store.movieSlice
+  );
+  const { select, isLoading2, error2 } = useSelector(
+    (store) => store.moviesSlice
   );
 
   return (
@@ -33,7 +36,12 @@ export default function AppLayout() {
 
         <Box>
           {select ? (
-            <MovieDetails />
+            <>
+              {isLoading2 && <Loading />}
+
+              {error2 && <Error />}
+              {!isLoading2 && !error2 && <MovieDetails />}
+            </>
           ) : (
             <>
               <WatchedSummary watched={watched} />

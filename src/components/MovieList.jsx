@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { selectMovie } from "../store/store";
+import { selectMovie } from "./moviesSlice";
 
 /*
 function WatchedBox() {
@@ -26,7 +26,7 @@ function WatchedBox() {
 }
 */
 export function MovieList() {
-  const { movies } = useSelector((store) => store.Movies);
+  const { movies } = useSelector((store) => store.movieSlice);
 
   return (
     <ul className="list list-movies">

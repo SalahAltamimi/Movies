@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const key = "53f9eba3";
+
 export async function Api(query) {
   if (query.length) {
     const res = await axios({

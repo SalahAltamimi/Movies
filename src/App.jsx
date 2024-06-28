@@ -2,22 +2,22 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import Loading from "./ui/Loading";
 import Error from "./ui/Error";
-const AppLayout = lazy(() => import("./pages/AppLayout"));
+const AppLayout = lazy(() => import("./ui/AppLayout"));
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: (
-      <Suspense fallback={<Loading />}>
-        <AppLayout />
-      </Suspense>
-    ),
+    element: <AppLayout />,
     errorElement: <Error />,
+    children: [{ path: "/" }],
   },
   { path: "*", element: <Error /> },
 ]);
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <Suspense fallback={<Loading />}>
+      <RouterProvider router={router} />{" "}
+    </Suspense>
+  );
 }
 
 export default App;

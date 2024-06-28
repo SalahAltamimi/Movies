@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { MovieApi } from "../store/store";
+import { MovieApi } from "./movieSlice";
 
 export function Search() {
   const [query, setQuery] = useState("");

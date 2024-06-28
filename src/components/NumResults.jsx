@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 
 export function NumResults() {
-  const { movies, error } = useSelector((store) => store.Movies);
+  const { movies, error } = useSelector((store) => store.movieSlice);
 
   return (
     <p className="num-results">

@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { MovieApi2, addWatched, onClose } from "../store/store";
+import { addWatched } from "./movieSlice";
 import StrasRating from "./StrasRating";
+import { MovieApi2, onClose } from "./moviesSlice";
 
 function MovieDetails() {
-  const { select, movie, watched } = useSelector((store) => store.Movies);
+  const { watched } = useSelector((store) => store.movieSlice);
+  const { select, movie } = useSelector((store) => store.moviesSlice);
   const dispatch = useDispatch();
   useEffect(
     function () {
