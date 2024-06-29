@@ -10,12 +10,11 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     children: [{ path: "/" }],
   },
-  { path: "*", element: <Error /> },
 ]);
 function App() {
   return (
     <Suspense fallback={<Loading />}>
-      <RouterProvider router={router} />{" "}
+      <RouterProvider router={router} />
     </Suspense>
   );
 }

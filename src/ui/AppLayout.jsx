@@ -15,9 +15,7 @@ export default function AppLayout() {
   const { error, isLoading, watched } = useSelector(
     (store) => store.movieSlice
   );
-  const { select, isLoading2, error2 } = useSelector(
-    (store) => store.moviesSlice
-  );
+  const { select, status, error2 } = useSelector((store) => store.moviesSlice);
 
   return (
     <>
@@ -37,10 +35,10 @@ export default function AppLayout() {
         <Box>
           {select ? (
             <>
-              {isLoading2 && <Loading />}
+              {status === "pending" && <Loading />}
 
               {error2 && <Error />}
-              {!isLoading2 && !error2 && <MovieDetails />}
+              {status !== "pending" && !error2 && <MovieDetails />}
             </>
           ) : (
             <>

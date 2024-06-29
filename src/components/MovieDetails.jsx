@@ -8,11 +8,12 @@ function MovieDetails() {
   const { watched } = useSelector((store) => store.movieSlice);
   const { select, movie } = useSelector((store) => store.moviesSlice);
   const dispatch = useDispatch();
+
   useEffect(
     function () {
       dispatch(MovieApi2(select.imdbID));
     },
-    [select, dispatch]
+    [select]
   );
 
   const isRating = watched.map((el) => el.imdbID).includes(select.imdbID);

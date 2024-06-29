@@ -1,8 +1,4 @@
-import {
-  configureStore,
-  createAsyncThunk,
-  createSlice,
-} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { Api2 } from "../service/Api";
 
 export const MovieApi2 = createAsyncThunk(
@@ -18,14 +14,16 @@ export const MovieApi2 = createAsyncThunk(
   }
 );
 
+const initialState = {
+  movie: {},
+  select: null,
+  status: "idle",
+  error2: "",
+};
+
 export const moviesSlice = createSlice({
   name: "Movies",
-  initialState: {
-    movie: {},
-    select: null,
-    isLoading2: false,
-    error2: "",
-  },
+  initialState,
   reducers: {
     selectMovie(state, action) {
       state.select =
@@ -37,14 +35,18 @@ export const moviesSlice = createSlice({
   },
   extraReducers: (builder) =>
     builder
+      // .addCase(MovieApi2.pending, (state) => {
+      //   // state.loading = true;
+      //   // state.status = "pending";
+      // })
       .addCase(MovieApi2.fulfilled, (state, action) => {
+        state.status = "idle";
         state.movie = action.payload;
-        state.isLoading2 = false;
         state.error2 = "";
       })
       .addCase(MovieApi2.rejected, (state, action) => {
+        state.status = "error";
         state.error2 = action.payload;
-        state.isLoading2 = false;
         state.movie = {};
       }),
 });
